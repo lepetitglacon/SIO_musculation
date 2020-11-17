@@ -1,12 +1,22 @@
 @startuml
 left to right direction
-class Utilisateur{
-    id : int
-    nom : string
-    role[] : array
+
+rectangle ROLE {
+    class Visiteur{
+
+    }
+    class Redacteur{
+        id : int
+        mail : string
+        role[] : array
+        nom : varchar
+        prénom : varchar
+    }
+    class Administrateur{}
 }
-class Redacteur{}
-class Administrateur{}
+
+
+
 class Rubrique{
     id : int
     nom : string
@@ -18,25 +28,25 @@ class Article{
     nom : string
     texte : text
     date : date
-    accueil : boolean
+}
+class Accueil{
+
 }
 
 
-Redacteur --|> Utilisateur
+
+Redacteur --|> Visiteur
 Administrateur --|> Redacteur
+Administrateur "*" -- "*" Redacteur : Gère >
 
+Article "1..*" -* "1" Rubrique : Compose >
+Accueil "1" *- "1" Article : Affiche
+Redacteur "1" - "1..*" Rubrique : Crée >
+Redacteur "*" - "*" Rubrique : Organise >
+Redacteur "1" - "1..*" Article : Rédige >
+Redacteur "1" - "1" Accueil : Modifie >
+Visiteur "*" - "1" Accueil : Voit
 
-Redacteur "1" -- "1..*" Rubrique
-(Redacteur,Rubrique) .. Cree_Rubrique
-class Cree_Rubrique {}
-
-Redacteur "1" -- "1..*" Article
-(Redacteur,Article) .. Cree_Article
-class Cree_Article {}
-
-Administrateur "*" -- "*" Redacteur
-(Administrateur,Redacteur) .. Encadre
-class Encadre {}
 
 
 @enduml

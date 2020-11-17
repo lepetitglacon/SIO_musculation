@@ -1,0 +1,41 @@
+@startuml
+left to right direction
+class Utilisateur{
+    id : int
+    nom : string
+    role[] : array
+}
+class Abonne{}
+class Redacteur{}
+class Administrateur{}
+
+class Rubrique{
+    id : int
+    nom : string
+    date : date
+    dropdown : boolean
+}
+class Article{
+    id : int
+    nom : string
+    texte : text
+    date : date
+    accueil : boolean
+}
+
+
+
+Abonne -|> Utilisateur
+Redacteur -|> Utilisateur
+Administrateur -|> Redacteur
+
+
+
+Redacteur "1" -- "1..*" Rubrique : Crée >
+
+Redacteur "1" -- "1..*" Article : Rédige >
+
+Administrateur "*" -- "*" Redacteur : Gère >
+
+
+@enduml
