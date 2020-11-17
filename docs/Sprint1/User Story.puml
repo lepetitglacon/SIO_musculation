@@ -1,0 +1,14 @@
+@startuml
+left to right direction
+
+Visiteur as V
+Redacteur as R
+Administrateur as A
+
+A--|>R
+
+V-->(Je peux naviguer sur le site vitrine)
+R-->(Je peux changer la page d'acceuil du site)
+R-->(Je peux administrer les rubriques menu)
+A-->(Je peux administrer les rédacteurs)
+@enduml
