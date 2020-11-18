@@ -46,7 +46,4 @@ Redacteur "*" - "*" Rubrique : Organise >
 Redacteur "1" - "1..*" Article : Rédige >
 Redacteur "1" - "1" Accueil : Modifie >
 Visiteur "*" - "1" Accueil : Voit
-
-
-
 @enduml
