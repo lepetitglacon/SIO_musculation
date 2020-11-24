@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -16,7 +18,7 @@ class Utilisateur implements UserInterface
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer", name="utilisateur_id")
+     * @ORM\Column(type="integer")
      */
     private $id;
 
@@ -45,6 +47,22 @@ class Utilisateur implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $prenom;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="redacteur_id")
+     */
+    private $articles;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Rubrique::class, mappedBy="redacteur_id")
+     */
+    private $rubriques;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+        $this->rubriques = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -144,6 +162,66 @@ class Utilisateur implements UserInterface
     public function setPrenom(?string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setRedacteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getRedacteur() === $this) {
+                $article->setRedacteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Rubrique[]
+     */
+    public function getRubriques(): Collection
+    {
+        return $this->rubriques;
+    }
+
+    public function addRubrique(Rubrique $rubrique): self
+    {
+        if (!$this->rubriques->contains($rubrique)) {
+            $this->rubriques[] = $rubrique;
+            $rubrique->setRedacteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRubrique(Rubrique $rubrique): self
+    {
+        if ($this->rubriques->removeElement($rubrique)) {
+            // set the owning side to null (unless already changed)
+            if ($rubrique->getRedacteur() === $this) {
+                $rubrique->setRedacteur(null);
+            }
+        }
 
         return $this;
     }

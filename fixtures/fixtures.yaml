@@ -1,2 +1,34 @@
 App\Entity\Utilisateur:
-  utilisateur_{1..10}:
+  visiteur_{1..10}:
+    email: <email()>
+    roles: [ROLE_USER]
+    password: '\$2y\$10\$xOEuWEHduf7xkA9RxuYPb.wcZZsvt6F4oNcMf/ZBv.9m45dGMsAwO'
+    nom: <lastName()>
+    prenom: <firstName()>
+
+  redacteur_{1..10}:
+    email: <email()>
+    roles: [ROLE_REDACTEUR]
+    password: '\$2y\$10\$xOEuWEHduf7xkA9RxuYPb.wcZZsvt6F4oNcMf/ZBv.9m45dGMsAwO'
+    nom: <lastName()>
+    prenom: <firstName()>
+
+  admin:
+    email: admin@gmail.com
+    roles: [ROLE_ADMIN]
+    password: '\$2y\$10\$xOEuWEHduf7xkA9RxuYPb.wcZZsvt6F4oNcMf/ZBv.9m45dGMsAwO'
+    nom: 'gagneur'
+    prenom: 'esteban'
+
+App\Entity\Rubrique:
+  rubrique_{1..5}:
+    redacteur: '@redacteur_*'
+    titre: <word()>
+    dropdown: false
+
+App\Entity\Article:
+  article_{1..20}:
+    redacteur: '@redacteur_*'
+    titre: <word()>
+    texte: <text()>
+    date_creation: <dateTime()>
