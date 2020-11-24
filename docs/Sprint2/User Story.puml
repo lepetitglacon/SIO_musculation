@@ -1,0 +1,30 @@
+@startuml
+left to right direction
+
+rectangle ROLE{
+    Visiteur as V
+    Abonné as A
+    Administrateur as Admin
+}
+
+
+
+A--|>V
+Admin--|>A
+
+
+rectangle UserStory-Sprint2 {
+    V-->(Je peux poser une question à la salle)
+    V-->(Je peux m'inscrire à la salle)
+    V-->(Je peux consulter les offres de la salle)
+
+    A-->(Je peux gérer mes informations)
+    A-->(Je peux m'abonné/me désabonné à la newsletter)
+
+    Admin-->(Je peux gérer les demandes de contacts)
+    Admin-->(Je peux envoyer un mail d'information aux inscrits)
+    Admin-->(Je peux gérer les offres de la salle)
+
+}
+
+@enduml

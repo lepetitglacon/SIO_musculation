@@ -1,0 +1,39 @@
+@startuml
+left to right direction
+
+rectangle ROLE{
+    Visiteur as U
+    Abonné as A
+    Redacteur as R
+    Administrateur as Admin
+}
+
+
+A--|>U
+R--|>A
+Admin--|>R
+
+rectangle Sprint1 {
+    U-->(Je peux naviguer sur le site vitrine)
+
+    R-->(Je peux changer la page d'acceuil du site)
+    R-->(Je peux administrer les rubriques menu)
+
+    Admin-->(Je peux administrer les rédacteurs)
+}
+
+rectangle Sprint2 {
+    U-->(Je peux poser une question à la salle)
+    U-->(Je peux m'inscrire à la salle)
+    U-->(Je peux consulter les offres de la salle)
+
+    A-->(Je peux gérer mes informations)
+    A-->(Je peux m'abonner/me désabonner à la newsletter)
+
+    Admin-->(Je peux gérer les demandes de contacts)
+    Admin-->(Je peux envoyer un mail d'information aux inscrits)
+    Admin-->(Je peux gérer les offres de la salle)
+
+}
+
+@enduml
