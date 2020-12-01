@@ -4,16 +4,16 @@
             <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
             <a class="nav-link" href="#">La salle</a>
             <a class="nav-link" href="#">Abonnement</a>
-
             {% for rubrique in menu %}
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ rubrique.titre }}
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {% for article in rubrique.getArticles() %}
-                <a class="dropdown-item" href="{{ path('article_show', {id: article.id}) }}">{{ article.titre }}</a>
-                {% endfor %}
+            <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="{{ rubrique.titre }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ rubrique.titre }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="{{ rubrique.titre }}">
+                        {% for article in rubrique.getArticles() %}
+                            <a class="dropdown-item" href="{{ path('article_show', {id: article.id}) }}">{{ article.titre }}</a>
+                        {% endfor %}
+                    </div>
             </div>
             {% endfor %}
         </div>
