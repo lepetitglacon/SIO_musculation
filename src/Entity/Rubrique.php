@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RubriqueRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Rubrique
      * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="rubriques")
      */
     private $redacteur;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="rubrique")
+     */
+    private $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,36 @@ class Rubrique
     public function setRedacteur(?Utilisateur $redacteur): self
     {
         $this->redacteur = $redacteur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setRubrique($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getRubrique() === $this) {
+                $article->setRubrique(null);
+            }
+        }
 
         return $this;
     }

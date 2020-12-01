@@ -37,6 +37,11 @@ class Article
      */
     private $redacteur;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Rubrique::class, inversedBy="articles")
+     */
+    private $rubrique;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Article
     public function setRedacteur(?Utilisateur $redacteur): self
     {
         $this->redacteur = $redacteur;
+
+        return $this;
+    }
+
+    public function getRubrique(): ?Rubrique
+    {
+        return $this->rubrique;
+    }
+
+    public function setRubrique(?Rubrique $rubrique): self
+    {
+        $this->rubrique = $rubrique;
 
         return $this;
     }

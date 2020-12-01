@@ -32,3 +32,4 @@ App\Entity\Article:
     titre: <word()>
     texte: <text()>
     date_creation: <dateTime()>
+    rubrique:
