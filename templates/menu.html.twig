@@ -10,8 +10,10 @@
                         {{ rubrique.titre }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="{{ rubrique.titre }}">
-                        {% for article in rubrique.getArticles() %}
+                        {% for article in articles %}
+                            {% if article.rubrique.id == rubrique.id %}
                             <a class="dropdown-item" href="{{ path('article_show', {id: article.id}) }}">{{ article.titre }}</a>
+                            {% endif %}
                         {% endfor %}
                     </div>
             </div>

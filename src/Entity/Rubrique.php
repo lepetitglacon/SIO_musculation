@@ -39,6 +39,11 @@ class Rubrique
      */
     private $articles;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Menu::class, inversedBy="rubriques")
+     */
+    private $menu;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -111,6 +116,18 @@ class Rubrique
                 $article->setRubrique(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMenu(): ?Menu
+    {
+        return $this->menu;
+    }
+
+    public function setMenu(?Menu $menu): self
+    {
+        $this->menu = $menu;
 
         return $this;
     }

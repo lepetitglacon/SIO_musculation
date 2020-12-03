@@ -21,14 +21,32 @@ class ArticleController extends AbstractController
     public function index(ArticleRepository $articleRepository): Response
     {
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="article_new", methods={"GET","POST"})
+     * @Route("/{id}", name="article_show", methods={"GET"})
      */
-    public function new(Request $request): Response
+    public function show(Article $article): Response
+    {
+        return $this->render('article/show.html.twig', [
+            'article' => $article
+        ]);
+    }
+
+    /**
+     * @Route("/admin/", name="admin_article_index", methods={"GET"})
+     */
+    public function indexAdmin(ArticleRepository $articleRepository): Response
+    {
+        return $this->render('article/index.html.twig', [
+        ]);
+    }
+
+    /**
+     * @Route("/admin/new", name="admin_article_new", methods={"GET","POST"})
+     */
+    public function newAdmin(Request $request): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -49,19 +67,19 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="article_show", methods={"GET"})
+     * @Route("/admin/{id}", name="admin_article_show", methods={"GET"})
      */
-    public function show(Article $article): Response
+    public function showAdmin(Article $article): Response
     {
-        return $this->render('article/show.html.twig', [
-            'article' => $article,
+        return $this->render('article/admin_show.html.twig', [
+            'article' => $article
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="article_edit", methods={"GET","POST"})
+     * @Route("/admin/{id}/edit", name="admin_article_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Article $article): Response
+    public function editAdmin(Request $request, Article $article): Response
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
@@ -79,9 +97,9 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="article_delete", methods={"DELETE"})
+     * @Route("/admin/{id}", name="admin_article_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Article $article): Response
+    public function deleteAdmin(Request $request, Article $article): Response
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
