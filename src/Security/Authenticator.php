@@ -96,7 +96,7 @@ class Authenticator extends AbstractFormLoginAuthenticator implements PasswordAu
             return new RedirectResponse($targetPath);
         }
 
-        $this->urlGenerator->generate('accueil');
+        $this->urlGenerator->generate('app_accueil');
 
     }
 
