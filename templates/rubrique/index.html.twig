@@ -8,10 +8,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Dropdown</th>
-                <th>actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Est Dropdown ?</th>
+                <th scope="col">Rédacteur</th>
+                <th scope="col">actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,10 +20,15 @@
             <tr>
                 <td>{{ rubrique.id }}</td>
                 <td>{{ rubrique.titre }}</td>
-                <td>{{ rubrique.dropdown ? 'Yes' : 'No' }}</td>
+                <td>{{ rubrique.dropdown ? 'Oui' : 'Non' }}</td>
+                {% for redacteur in redacteurs %}
+                    {% if rubrique.redacteur.id == redacteur.id %}
+                <td>{{ redacteur.nom }}</td>
+                    {% endif %}
+                {% endfor %}
                 <td>
-                    <a href="{{ path('rubrique_show', {'id': rubrique.id}) }}">show</a>
-                    <a href="{{ path('rubrique_edit', {'id': rubrique.id}) }}">edit</a>
+                    <a href="{{ path('rubrique_show', {'id': rubrique.id}) }}" class="btn btn-primary">Afficher</a>
+                    <a href="{{ path('rubrique_edit', {'id': rubrique.id}) }}" class="btn btn-warning">Modifier</a>
                 </td>
             </tr>
         {% else %}

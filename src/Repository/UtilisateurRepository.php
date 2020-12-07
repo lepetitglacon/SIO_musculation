@@ -36,6 +36,17 @@ class UtilisateurRepository extends ServiceEntityRepository implements PasswordU
         $this->_em->flush();
     }
 
+    public function findRedacteurs()
+    {
+        $sql = $this->_em->createQuery('
+            SELECT u
+            FROM App\Entity\Utilisateur u
+            WHERE u.roles = :role
+        ')->setParameter('role',  '["ROLE_REDACTEUR"]');
+        return $sql->getResult();
+            ;
+    }
+
     // /**
     //  * @return Utilisateur[] Returns an array of Utilisateur objects
     //  */

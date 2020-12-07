@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Rubrique;
+use App\Entity\Utilisateur;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,7 +16,10 @@ class RubriqueType extends AbstractType
         $builder
             ->add('titre')
             ->add('dropdown')
-            ->add('redacteur')
+            ->add('redacteur', EntityType::class, [
+                'class' => Utilisateur::class,
+                'choice_label' => 'nom'
+            ])
         ;
     }
 

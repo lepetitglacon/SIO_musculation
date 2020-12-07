@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Rubrique;
+use App\Entity\Utilisateur;
 use App\Form\RubriqueType;
 use App\Repository\RubriqueRepository;
+use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +20,12 @@ class RubriqueController extends AbstractController
     /**
      * @Route("/", name="rubrique_index", methods={"GET"})
      */
-    public function index(RubriqueRepository $rubriqueRepository): Response
+    public function index(RubriqueRepository $rubriques, UtilisateurRepository $redacteurs): Response
     {
+
         return $this->render('rubrique/index.html.twig', [
-            'rubriques' => $rubriqueRepository->findAll(),
+            'rubriques' => $rubriques->findAll(),
+            'redacteurs' => $redacteurs->findRedacteurs()
         ]);
     }
 

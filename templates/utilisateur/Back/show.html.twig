@@ -3,43 +3,27 @@
 {% block title %}Utilisateur{% endblock %}
 
 {% block body %}
-    <div class="container d-flex flex-column col p-5">
-        <div class="row">
-            <div class="col">
-                NOM
-            </div>
-            <div class="col">
-                {{ utilisateur.nom }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                PRENOM
-            </div>
-            <div class="col">
-                {{ utilisateur.prenom }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                MAIL
-            </div>
-            <div class="col">
-                {{ utilisateur.email }}
-            </div>
-        </div>
-        <div class="justify-content-center">
-            <div class="col">
-                <a href="{{ path('admin_utilisateur_index') }}" class="btn btn-primary">back to list</a>
-            </div>
-            <div class="col">
-                <a href="{{ path('admin_utilisateur_edit', {'id': utilisateur.id}) }}"class="btn btn-warning">edit</a>
-            </div>
-            <div class="col">
-                {{ include('utilisateur/Back/_delete_form.html.twig') }}
-            </div>
-        </div>
 
+    <div class="container pt-5">
+        <h1>Mon profile</h1>
+        <div class="pt-5">
+            <div class="row">
+                <div class="col-2 font-weight-bold">Nom</div>
+                <div class="col-2 font-weight-bold">Prénom</div>
+                <div class="col-2 font-weight-bold">Email</div>
+            </div>
+            <div class="row">
+                <div class="col-2">{{ app.user.nom }}</div>
+                <div class="col-2">{{ app.user.prenom }}</div>
+                <div class="col-2">{{ app.user.email }}</div>
+            </div>
+        </div>
+        <div class="col pt-5">
+            <a href="{{ path('utilisateur_edit', {'id': app.user.id}) }}"class="btn btn-warning">Modifier</a>
+            {{ include('utilisateur/Back/_delete_form.html.twig') }}
+            <a href="{{ path('admin_utilisateur_index') }}" class="btn btn-primary">Retour à la liste</a>
+        </div>
+    </div>
     </div>
 
 
