@@ -30,13 +30,13 @@
         </div>
         <div class="justify-content-center">
             <div class="col">
-                <a href="{{ path('utilisateur_index') }}" class="btn btn-primary">back to list</a>
+                <a href="{{ path('admin_utilisateur_index') }}" class="btn btn-primary">back to list</a>
             </div>
             <div class="col">
-                <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}"class="btn btn-warning">edit</a>
+                <a href="{{ path('admin_utilisateur_edit', {'id': utilisateur.id}) }}"class="btn btn-warning">edit</a>
             </div>
             <div class="col">
-                {{ include('utilisateur/_delete_form.html.twig') }}
+                {{ include('utilisateur/Back/_delete_form.html.twig') }}
             </div>
         </div>
 

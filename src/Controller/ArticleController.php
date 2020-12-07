@@ -20,7 +20,7 @@ class ArticleController extends AbstractController
      */
     public function index(ArticleRepository $articleRepository): Response
     {
-        return $this->render('article/index.html.twig', [
+        return $this->render('article/Front/index.html.twig', [
         ]);
     }
 
@@ -29,17 +29,17 @@ class ArticleController extends AbstractController
      */
     public function show(Article $article): Response
     {
-        return $this->render('article/show.html.twig', [
+        return $this->render('article/Front/show.html.twig', [
             'article' => $article
         ]);
     }
 
     /**
-     * @Route("/admin/", name="admin_article_index", methods={"GET"})
+     * @Route("/admin", name="admin_article_index", methods={"GET"})
      */
-    public function indexAdmin(ArticleRepository $articleRepository): Response
+    public function indexAdmin(): Response
     {
-        return $this->render('article/index.html.twig', [
+        return $this->render('article/Back/index.html.twig', [
         ]);
     }
 
@@ -57,10 +57,10 @@ class ArticleController extends AbstractController
             $entityManager->persist($article);
             $entityManager->flush();
 
-            return $this->redirectToRoute('article_index');
+            return $this->redirectToRoute('admin_article_index');
         }
 
-        return $this->render('article/new.html.twig', [
+        return $this->render('article/Back/new.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
         ]);
@@ -71,7 +71,7 @@ class ArticleController extends AbstractController
      */
     public function showAdmin(Article $article): Response
     {
-        return $this->render('article/admin_show.html.twig', [
+        return $this->render('article/Back/admin_show.html.twig', [
             'article' => $article
         ]);
     }
@@ -90,7 +90,7 @@ class ArticleController extends AbstractController
             return $this->redirectToRoute('article_index');
         }
 
-        return $this->render('article/edit.html.twig', [
+        return $this->render('article/Back/edit.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
         ]);

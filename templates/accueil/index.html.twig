@@ -4,17 +4,63 @@
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .item{
+        margin-top: 50px;
+        min-height: 150px;
+
+        display: flex;
+        justify-content: start;
+
+    }
+    .item:nth-child(2n){
+        justify-content: end;
+    }
+    .item-image{
+        width: 50%;
+    }
+    .item-titre{
+    }
+    .item-text{
+
+    }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class="container">
+    <div class="d-flex flex-column align-items-center d-flex mt-5">
+        <h1>M-Musculation</h1>
+        <h2>Prêt à gagner du Muscle ?</h2>
+    </div>
+    <div class="d-flex flex-column">
+        <div class="item">
+            <div class="col-7">
+                <h3 class="item-titre">Gagner du muscle...</h3>
+                <p class="item-text col-8">Grâce à nos coachs experimentés et leurs programmes sur mesures vous prendrez du muscle en un rien de temps</p>
+            </div>
+            <div class="col">
+                <img class="item-image" src="" alt="">
+            </div>
+        </div>
+        <div class="item">
+                <div class="col">
+                    <img class="item-image" src="" alt="">
+                </div>
+                <div class="col-7 d-flex flex-column align-items-end">
+                    <h3 class="item-titre text-right">...Même à distance...</h3>
+                    <p class="item-text col-8 text-right">Grâce a notre application dédiée retrouvez toutes les fonctionnalitées de la salle depuis n'importe où</p>
+                </div>
+        </div>
+        <div class="item">
+            <div class="col-7">
+                <h3 class="item-titre">...Pour toujours avoir la pêche</h3>
+                <p class="item-text col-8">Grâce à nos menu fais sur mesure par des dieteticiens professionnel</p>
+            </div>
+            <div class="col">
+                <img class="item-image" src="" alt="">
+            </div>
+        </div>
+    </div>
+    <div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/ST/Desktop/Codes/musculation_sprint2/src/Controller/AccueilController.php'|file_link(0) }}">src/Controller/AccueilController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/ST/Desktop/Codes/musculation_sprint2/templates/accueil/index.html.twig'|file_link(0) }}">templates/accueil/index.html.twig</a></code></li>
-    </ul>
+    </div>
 </div>
 {% endblock %}

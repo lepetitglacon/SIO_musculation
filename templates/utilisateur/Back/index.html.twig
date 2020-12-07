@@ -27,8 +27,8 @@
                 <td>{{ utilisateur.nom }}</td>
                 <td>{{ utilisateur.prenom }}</td>
                 <td>
-                    <a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}">show</a>
-                    <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
+                    <a href="{{ path('admin_utilisateur_show', {'id': utilisateur.id}) }}">show</a>
+                    <a href="{{ path('admin_utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('utilisateur_new') }}">Create new</a>
+    <a href="{{ path('admin_utilisateur_new') }}">Create new</a>
 {% endblock %}
