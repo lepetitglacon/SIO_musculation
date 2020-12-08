@@ -1,4 +1,9 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+<div class="d-flex">
+    {{ form_row(form.email) }}
+    {{ form_row(form.roles) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.prenom) }}
+</div>
     <button class="btn btn-success">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
