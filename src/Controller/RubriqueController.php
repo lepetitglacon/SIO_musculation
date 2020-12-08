@@ -87,11 +87,18 @@ class RubriqueController extends AbstractController
      */
     public function delete(Request $request, Rubrique $rubrique): Response
     {
+        /*
         if ($this->isCsrfTokenValid('delete'.$rubrique->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($rubrique);
             $entityManager->flush();
         }
+        */
+
+        $this->addFlash(
+            'danger',
+            'Vous ne pouvez supprimer cet article'
+        );
 
         return $this->redirectToRoute('rubrique_index');
     }

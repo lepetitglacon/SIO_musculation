@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use TheSeer\Tokenizer\Exception;
 
 /**
  * @Route("/utilisateur")
@@ -81,10 +82,10 @@ class UtilisateurController extends AbstractController
     /**
      * @Route("/admin/{id}", name="admin_utilisateur_show", methods={"GET"})
      */
-    public function showAdmin(Utilisateur $utilisateur): Response
+    public function showAdmin(UtilisateurRepository $utilisateur, $id): Response
     {
         return $this->render('utilisateur/Back/show.html.twig', [
-            'utilisateur' => $utilisateur,
+            'utilisateur' => $utilisateur->findOneBy(['id' => $id]),
         ]);
     }
 
@@ -114,11 +115,25 @@ class UtilisateurController extends AbstractController
      */
     public function deleteAdmin(Request $request, Utilisateur $utilisateur): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$utilisateur->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($utilisateur);
-            $entityManager->flush();
+        try {
+            if ($this->isCsrfTokenValid('delete'.$utilisateur->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($utilisateur);
+                $entityManager->flush();
+                $this->addFlash(
+                    'success',
+                    'Utilisateur supprimé'
+                );
+            }
+        } catch (\Doctrine\DBAL\Exception $e){
+            $this->addFlash(
+                'danger',
+                'Utilisateur ne peut etre supprimé'
+            );
         }
+
+
+
 
         return $this->redirectToRoute('admin_utilisateur_index');
     }

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Utilisateur;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -101,12 +103,17 @@ class ArticleController extends AbstractController
      */
     public function deleteAdmin(Request $request, Article $article): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+        /*
+        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token')) && ) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($article);
             $entityManager->flush();
         }
-
+        */
+        $this->addFlash(
+            'danger',
+            'Vous ne pouvez supprimer cet article'
+        );
         return $this->redirectToRoute('article_index');
     }
 }

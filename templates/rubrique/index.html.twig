@@ -3,10 +3,13 @@
 {% block title %}Rubrique index{% endblock %}
 
 {% block body %}
-    <h1>Rubrique index</h1>
+    <div class="container">
+        <h1>Rubrique index</h1>
 
-    <table class="table">
-        <thead>
+        <a href="{{ path('rubrique_new') }}" class="btn btn-primary my-2">Créer une Rubrique</a>
+
+        <table class="table">
+            <thead>
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Titre</th>
@@ -14,30 +17,30 @@
                 <th scope="col">Rédacteur</th>
                 <th scope="col">actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for rubrique in rubriques %}
-            <tr>
-                <td>{{ rubrique.id }}</td>
-                <td>{{ rubrique.titre }}</td>
-                <td>{{ rubrique.dropdown ? 'Oui' : 'Non' }}</td>
-                {% for redacteur in redacteurs %}
-                    {% if rubrique.redacteur.id == redacteur.id %}
-                <td>{{ redacteur.nom }}</td>
-                    {% endif %}
-                {% endfor %}
-                <td>
-                    <a href="{{ path('rubrique_show', {'id': rubrique.id}) }}" class="btn btn-primary">Afficher</a>
-                    <a href="{{ path('rubrique_edit', {'id': rubrique.id}) }}" class="btn btn-warning">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for rubrique in rubriques %}
+                <tr>
+                    <td>{{ rubrique.id }}</td>
+                    <td>{{ rubrique.titre }}</td>
+                    <td>{{ rubrique.dropdown ? 'Oui' : 'Non' }}</td>
+                    {% for redacteur in redacteurs %}
+                        {% if rubrique.redacteur.id == redacteur.id %}
+                            <td>{{ redacteur.nom }}</td>
+                        {% endif %}
+                    {% endfor %}
+                    <td>
+                        <a href="{{ path('rubrique_show', {'id': rubrique.id}) }}" class="btn btn-primary">Afficher</a>
+                        <a href="{{ path('rubrique_edit', {'id': rubrique.id}) }}" class="btn btn-warning">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <a href="{{ path('rubrique_new') }}">Create new</a>
 {% endblock %}

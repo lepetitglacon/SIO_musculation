@@ -3,7 +3,16 @@
 {% block title %}Utilisateur index{% endblock %}
 
 {% block body %}
+
+
     <div class="container pt-5">
+        {% for label, messages in app.flashes(['success', 'danger']) %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         <h1>Index des utilisateurs</h1>
         <table class="table pt-5">
             <thead>
