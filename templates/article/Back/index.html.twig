@@ -13,7 +13,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">Titre</th>
                 <th scope="col">Texte</th>
-                <th scope="col">Date_creation</th>
+                <th scope="col">Date de création</th>
                 <th scope="col">Rubrique</th>
                 <th scope="col">actions</th>
             </tr>
@@ -25,7 +25,7 @@
                     <td>{{ article.titre }}</td>
                     <td>{{ article.texte }}</td>
                     <td>{{ article.dateCreation ? article.dateCreation|date('Y-m-d') : '' }}</td>
-                    <td><a href="{{ path('rubrique_show',{id: article.rubrique.id}) }}">{{ article.rubrique.id }}</a></td>
+                    <td><a href="{{ path('rubrique_show',{id: article.rubrique.id}) }}">{{ article.rubrique.titre }}</a></td>
                     <td class="d-flex">
                         <a href="{{ path('admin_article_show', {'id': article.id}) }}" class="btn btn-primary">Afficher</a>
                         <a href="{{ path('admin_article_edit', {'id': article.id}) }}" class="btn btn-warning">Modifier</a>

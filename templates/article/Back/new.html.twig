@@ -3,9 +3,12 @@
 {% block title %}New Article{% endblock %}
 
 {% block body %}
-    <h1>Create new Article</h1>
+    <div class="container">
+        <h1>Créer un nouvel Article</h1>
 
-    {{ include('article/_form.html.twig') }}
+        {{ include('article/Back/_form.html.twig') }}
 
-    <a href="{{ path('admin_article_index') }}">back to list</a>
+        <a href="{{ path('admin_article_index') }}" class="btn btn-primary">Retour à la liste</a>
+    </div>
+
 {% endblock %}

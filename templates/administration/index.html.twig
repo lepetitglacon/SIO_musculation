@@ -17,10 +17,12 @@
             Voir les
             <a href="{{ path('rubrique_index') }}">Rubriques</a>
         </div>
+        {% if is_granted('ROLE_ADMIN') %}
         <div class="col">
             Voir les
             <a href="{{ path('admin_utilisateur_index') }}">Utilisateurs</a>
         </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

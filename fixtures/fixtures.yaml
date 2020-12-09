@@ -13,6 +13,13 @@ App\Entity\Utilisateur:
     nom: <lastName()>
     prenom: <firstName()>
 
+  redacteur0:
+    email: redacteur@gmail.com
+    roles: [ROLE_REDACTEUR]
+    password: '\$2y\$10\$xOEuWEHduf7xkA9RxuYPb.wcZZsvt6F4oNcMf/ZBv.9m45dGMsAwO'
+    nom: 'READACTEUR'
+    prenom: 'Rédigé'
+
   admin:
     email: admin@gmail.com
     roles: [ROLE_ADMIN]
@@ -24,7 +31,7 @@ App\Entity\Rubrique:
   rubrique_{1..5}:
     redacteur: '@redacteur_*'
     titre: <word()>
-    dropdown: false
+    dropdown: true
 
 App\Entity\Article:
   article_{1..20}:

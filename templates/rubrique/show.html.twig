@@ -27,7 +27,7 @@
             <div class="col d-flex">
                 {% for article in articles %}
                     {% if rubrique.id == article.rubrique.id %}
-                <div class="col"><a href="{{ path('admin_article_show',{id: article.id}) }}">{{ article.id }}</a></div>
+                <div class="col"><a href="{{ path('admin_article_show',{id: article.id}) }}">{{ article.titre }}</a></div>
                     {% endif %}
                 {% endfor %}
             </div>
