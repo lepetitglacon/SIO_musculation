@@ -127,6 +127,10 @@ class UtilisateurController extends AbstractController
                 'danger',
                 'Utilisateur ne peut etre supprimé'
             );
+            $this->addFlash(
+                'danger',
+                $e
+            );
         }
 
 
