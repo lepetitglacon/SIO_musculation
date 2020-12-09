@@ -3,7 +3,10 @@
 {% block title %}Edit Utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Modifier l'utilisateur</h1>
+    <div class="container pt-5">
+        <h1>Modifier l'utilisateur</h1>
 
-    {{ include('utilisateur/Back/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('utilisateur/Back/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+
 {% endblock %}

@@ -5,25 +5,32 @@
 {% block body %}
 
     <div class="container pt-5">
-        <h1>{{ utilisateur.nom }} {{ utilisateur.prenom }}</h1>
+        <h1>Utilisateur : {{ utilisateur.id }}</h1>
         <div class="pt-5">
-            <div class="col">
-                <div class="row font-weight-bold">Nom</div>
-                <div class="row">{{ utilisateur.nom }}</div>
-                <div class="row font-weight-bold">Prénom</div>
-                <div class="row">{{ utilisateur.prenom }}</div>
-                <div class="row font-weight-bold">Email</div>
-                <div class="row">{{ utilisateur.email }}</div>
-                <div class="row font-weight-bold">Role</div>
-                <div class="row">{{ utilisateur.roles ? utilisateur.roles|json_encode : ''  }}</div>
+            <div class="col d-flex">
+                <div class="col">
+                    <div class="row font-weight-bold">Nom</div>
+                    <div class="row">{{ utilisateur.nom }}</div>
+                </div>
+                <div class="col">
+                    <div class="row font-weight-bold">Prénom</div>
+                    <div class="row">{{ utilisateur.prenom }}</div>
+                </div>
+                <div class="col">
+                    <div class="row font-weight-bold">Email</div>
+                    <div class="row">{{ utilisateur.email }}</div>
+                </div>
+                <div class="col">
+                    <div class="row font-weight-bold">Role</div>
+                    <div class="row">{{ utilisateur.roles ? utilisateur.roles|json_encode : ''  }}</div>
+                </div>
             </div>
         </div>
-        <div class="col pt-5">
-            <a href="{{ path('admin_utilisateur_edit', {'id': utilisateur.id}) }}"class="btn btn-warning">Modifier</a>
+        <div class="col d-flex pt-5">
+            <a href="{{ path('admin_utilisateur_edit', {'id': utilisateur.id}) }}"class="btn btn-warning mr-5">Modifier</a>
             {{ include('utilisateur/Back/_delete_form.html.twig') }}
-            <a href="{{ path('admin_utilisateur_index') }}" class="btn btn-primary">Retour à la liste</a>
         </div>
-    </div>
+        <a href="{{ path('admin_utilisateur_index') }}" class="btn btn-primary mt-5">Retour à la liste</a>
     </div>
 
 

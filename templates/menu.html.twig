@@ -21,7 +21,7 @@
     </div>
     <div class="d-flex">
         {% if app.user %}
-        <a class="nav-link" href="{{ path('utilisateur_profile',{id: app.user.getId()}) }}">Mon compte</a>
+        <a class="nav-link" href="{{ path('utilisateur_profile') }}">Mon compte</a>
         {% if is_granted('ROLE_ADMIN') %}
         <a class="nav-link" href="{{ path('app_admin') }}">Administration</a>
         {% endif %}

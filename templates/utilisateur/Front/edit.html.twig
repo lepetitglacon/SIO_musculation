@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Utilisateur{% endblock %}
+{% block title %}Modifier mon profile{% endblock %}
 
 {% block body %}
-    <h1>Edit Utilisateur</h1>
+    <div class="container">
+        <h1>Modifier mon profile</h1>
 
-    {{ include('utilisateur/Front/_form.html.twig') }}
+        {{ include('utilisateur/Front/_form.html.twig') }}
+    </div>
+
 {% endblock %}

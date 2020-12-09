@@ -22,7 +22,7 @@
                 <th scope="col">Roles</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
-                <th scope="col">actions</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -34,7 +34,6 @@
                     <td>{{ utilisateur.nom }}</td>
                     <td>{{ utilisateur.prenom }}</td>
                     <td>
-                        <a href="{{ path('admin_utilisateur_show', {'id': utilisateur.id}) }}" class="btn btn-primary">Afficher</a>
                         <a href="{{ path('admin_utilisateur_edit', {'id': utilisateur.id}) }}" class="btn btn-warning">Modifier</a>
                     </td>
                 </tr>
@@ -45,7 +44,7 @@
             {% endfor %}
             </tbody>
         </table>
-        <a href="{{ path('admin_utilisateur_new') }}">Create new</a>
+
     </div>
 
 {% endblock %}

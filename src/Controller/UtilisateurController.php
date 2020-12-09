@@ -11,13 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/utilisateur")
- */
+
 class UtilisateurController extends AbstractController
 {
     /**
-     * @Route("/", name="utilisateur_profile", methods={"GET"})
+     * @Route("/profile", name="utilisateur_profile", methods={"GET"})
      */
     public function show(): Response
     {
@@ -26,7 +24,7 @@ class UtilisateurController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="utilisateur_edit", methods={"GET","POST"})
+     * @Route("/profile/modifier/{id}", name="utilisateur_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Utilisateur $utilisateur): Response
     {
@@ -46,7 +44,7 @@ class UtilisateurController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin_utilisateur_index", methods={"GET"})
+     * @Route("/admin/utilisateurs", name="admin_utilisateur_index", methods={"GET"})
      */
     public function indexAdmin(UtilisateurRepository $utilisateurRepository): Response
     {
@@ -56,7 +54,7 @@ class UtilisateurController extends AbstractController
     }
 
     /**
-     * @Route("/admin/new", name="admin_utilisateur_new", methods={"GET","POST"})
+     * @Route("/admin/utilisateur/creer", name="admin_utilisateur_new", methods={"GET","POST"})
      */
     public function newAdmin(Request $request): Response
     {
@@ -79,7 +77,7 @@ class UtilisateurController extends AbstractController
     }
 
     /**
-     * @Route("/admin/{id}", name="admin_utilisateur_show", methods={"GET"})
+     * @Route("/admin/utilisateur/{id}", name="admin_utilisateur_show", methods={"GET"})
      */
     public function showAdmin(UtilisateurRepository $utilisateur, $id): Response
     {
@@ -90,7 +88,7 @@ class UtilisateurController extends AbstractController
 
 
     /**
-     * @Route("/admin/{id}/edit", name="admin_utilisateur_edit", methods={"GET","POST"})
+     * @Route("/admin/utilisateur/{id}/modifier", name="admin_utilisateur_edit", methods={"GET","POST"})
      */
     public function editAdmin(Request $request, Utilisateur $utilisateur): Response
     {
@@ -110,7 +108,7 @@ class UtilisateurController extends AbstractController
     }
 
     /**
-     * @Route("/admin/{id}", name="admin_utilisateur_delete", methods={"DELETE"})
+     * @Route("/admin/utilisateur/{id}", name="admin_utilisateur_delete", methods={"DELETE"})
      */
     public function deleteAdmin(Request $request, Utilisateur $utilisateur): Response
     {
