@@ -26,7 +26,7 @@ class Demande{
 }
 
 Utilisateur -|> Visiteur
-Redacteur --|> Utilisateur
+Redacteur -|> Utilisateur
 Administrateur -|> Redacteur
 
 Administrateur -- Abonnement : administrer
@@ -34,8 +34,8 @@ Administrateur -- Demande : voir
 Administrateur -- Utilisateur : envoyer
 
 Utilisateur -- Newsletter : inscrire
-Utilisateur -- Demande : faire
 
+Visiteur -- Demande : faire
 Visiteur -- Abonnement : voir
 
 
