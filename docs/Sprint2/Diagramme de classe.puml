@@ -1,41 +1,43 @@
 @startuml
 left to right direction
-class Utilisateur{
-    id : int
-    nom : string
-    role[] : array
+rectangle Roles{
+    class Utilisateur{
+        id : int
+        nom : string
+        role[] : array
+    }
+    class Visiteur{}
+    class Redacteur{}
+    class Administrateur{}
 }
-class Abonne{}
-class Redacteur{}
-class Administrateur{}
 
-class Rubrique{
+class Abonnement{
     id : int
-    nom : string
-    date : date
-    dropdown : boolean
+    titre : string
+    prix : float
+    image : string
 }
-class Article{
+class Newsletter{
+}
+class Demande{
     id : int
-    nom : string
+    objet : string
     texte : text
-    date : date
-    accueil : boolean
 }
 
-
-
-Abonne -|> Utilisateur
-Redacteur -|> Utilisateur
+Utilisateur -|> Visiteur
+Redacteur --|> Utilisateur
 Administrateur -|> Redacteur
 
+Administrateur -- Abonnement : administrer
+Administrateur -- Demande : voir
+Administrateur -- Utilisateur : envoyer
 
+Utilisateur -- Newsletter : inscrire
+Utilisateur -- Demande : faire
 
-Redacteur "1" -- "1..*" Rubrique : Crée >
+Visiteur -- Abonnement : voir
 
-Redacteur "1" -- "1..*" Article : Rédige >
-
-Administrateur "*" -- "*" Redacteur : Gère >
 
 
 @enduml
