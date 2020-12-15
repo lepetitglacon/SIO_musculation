@@ -1,5 +1,4 @@
 @startuml
-left to right direction
 rectangle Roles{
     class Utilisateur{
         id : int

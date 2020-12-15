@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="pt-5">Faire une demande</h1>
+        {{ include('demande/_form.html.twig') }}
+    </div>
+{% endblock %}
