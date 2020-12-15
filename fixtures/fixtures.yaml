@@ -40,3 +40,10 @@ App\Entity\Article:
     texte: <text()>
     date_creation: <dateTime()>
     rubrique: '@rubrique_*'
+
+App\Entity\Abonnement:
+  abonnement_{1..3}:
+    titre: <word()>
+    prix: <numberBetween(15,50)>
+    image: 'https://via.placeholder.com/150'
+

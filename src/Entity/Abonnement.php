@@ -18,7 +18,7 @@ class Abonnement
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $titre;
 
@@ -32,17 +32,17 @@ class Abonnement
      */
     private $image;
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
 
-    public function getTitre(): ?int
+    public function getTitre(): ?string
     {
         return $this->titre;
     }
 
-    public function setTitre(int $titre): self
+    public function setTitre(string $titre): self
     {
         $this->titre = $titre;
 

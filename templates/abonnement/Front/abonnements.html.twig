@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AbonnementController!{% endblock %}
+
+{% block body %}
+<style>
+</style>
+
+<div class="container">
+    <h1 class="pt-5">Voici les abonnements que nous proposons</h1>
+    <div class="d-flex justify-content-around pt-5">
+        {% for abonnement in abonnements %}
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ abonnement.image }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ abonnement.titre }}</h5>
+                    <p class="card-text">{{ abonnement.prix }} euros</p>
+                    <a href="{{ path('abonnement',{id: abonnement.id}) }}" class="btn btn-primary">Choisir</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

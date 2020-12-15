@@ -19,8 +19,10 @@
         </div>
         {% if is_granted('ROLE_ADMIN') %}
         <div class="col">
-            Voir les
-            <a href="{{ path('admin_utilisateur_index') }}">Utilisateurs</a>
+            Voir les <a href="{{ path('admin_utilisateur_index') }}">Utilisateurs</a>
+        </div>
+        <div class="col">
+            Voir les <a href="{{ path('abonnement_index') }}">Abonnements</a>
         </div>
         {% endif %}
     </div>

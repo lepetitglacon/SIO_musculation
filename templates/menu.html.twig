@@ -2,7 +2,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-link" href="{{ path('app_accueil') }}">M</a>
-            <a class="nav-link" href="#">Abonnement</a>
+            <a class="nav-link" href="{{ path('abonnements') }}">Abonnement</a>
             {% for rubrique in menu %}
             <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="{{ rubrique.titre }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
