@@ -8,10 +8,14 @@ use App\Repository\DemandeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 class DemandeController extends AbstractController
 {
+    const NE_PAS_REPONDRE = 'nepasrepondre@sio2-gagneur.siopergaud.fr';
+    const CONTACT_CLIENT = 'contact-client@sio2-gagneur.siopergaud.fr';
 
     /**
      * @Route("/demande", name="demande", methods={"GET","POST"})
@@ -27,7 +31,13 @@ class DemandeController extends AbstractController
             $entityManager->persist($demande);
             $entityManager->flush();
 
-            return $this->redirectToRoute('demande_index');
+
+            return $this->redirectToRoute('send_mail',array(
+                'de' => self::NE_PAS_REPONDRE,
+                'a' => 'estebangagneur03@gmail.com',
+                'objet' => $demande->getObjet(),
+                'texte' => 'Vous avez envoyé ce mail '.$demande->getTexte()
+            ));
         }
 
         return $this->render('demande/Front/demande.html.twig', [
