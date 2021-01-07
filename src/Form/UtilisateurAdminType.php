@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Abonnement;
 use App\Entity\Utilisateur;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -27,6 +28,10 @@ class UtilisateurAdminType extends AbstractType
             ])
             ->add('nom')
             ->add('prenom')
+            ->add('abonnement',EntityType::class,[
+                "class" => Abonnement::class,
+                "choice_label" => "titre"
+            ])
         ;
     }
 

@@ -33,6 +33,7 @@ Administrateur -- Demande : voir
 Administrateur -- Utilisateur : envoyer
 
 Utilisateur -- Newsletter : inscrire
+Utilisateur "1" -- "1" Abonnement : inscrire
 
 Visiteur -- Demande : faire
 Visiteur -- Abonnement : voir

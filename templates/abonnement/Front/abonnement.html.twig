@@ -14,7 +14,11 @@
             <div class="card-body">
                 <h5 class="card-title">{{ abonnement.titre }}</h5>
                 <p class="card-text">{{ abonnement.prix }} euros</p>
-                <a href="{{ path('abonnement',{id: abonnement.id}) }}" class="btn btn-primary">Choisir</a>
+                {% if app.user %}
+                <a href="{{ path('utilisateur_inscrire_abonnement',{id: abonnement.id}) }}" class="btn btn-primary">Choisir cet abonnement</a>
+                {% else %}
+                <a href="{{ path('app_login') }}" class="btn btn-primary">Se connecter</a>
+                {% endif %}
             </div>
         </div>
     </div>

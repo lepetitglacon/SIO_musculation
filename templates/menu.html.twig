@@ -2,7 +2,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-link" href="{{ path('app_accueil') }}">M</a>
-            <a class="nav-link" href="{{ path('abonnements') }}">Abonnement</a>
+            <a class="nav-link" href="{{ path('abonnements') }}">Abonnements</a>
             {% for rubrique in menu %}
             <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="{{ rubrique.titre }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -17,9 +17,11 @@
                     </div>
             </div>
             {% endfor %}
-            <a class="nav-link" href="{{ path('demande') }}">Demande</a>
+            <a class="nav-link" href="{{ path('demande') }}">Contact/Demande</a>
         </div>
+
     </div>
+
     <div class="d-flex">
         {% if app.user %}
         <a class="nav-link" href="{{ path('utilisateur_profile') }}">Mon compte</a>

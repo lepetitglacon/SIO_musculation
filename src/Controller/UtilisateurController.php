@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Abonnement;
 use App\Entity\Utilisateur;
 use App\Form\UtilisateurAdminType;
 use App\Form\UtilisateurType;
@@ -10,12 +11,38 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 
 class UtilisateurController extends AbstractController
 {
     /**
-     * @Route("/profile", name="utilisateur_profile", methods={"GET"})
+     * @var Security
+     */
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
+    /**
+     * @Route("/choisirsonabonnement/{id}", name="utilisateur_inscrire_abonnement", methods={"GET","POST","PUT"})
+     */
+    public function inscrireAbonnement(Abonnement $abonnement): Response
+    {
+        $utilisateur = $this->security->getUser();
+        $utilisateur->setAbonnement($abonnement);
+        $this->getDoctrine()->getManager()->flush();
+        $this->addFlash(
+            'success',
+            'Abonnement ajouté'
+        );
+        return $this->redirectToRoute('utilisateur_profile');
+    }
+
+    /**
+     * @Route("/profil", name="utilisateur_profile", methods={"GET"})
      */
     public function show(): Response
     {

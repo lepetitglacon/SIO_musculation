@@ -58,6 +58,16 @@ class Utilisateur implements UserInterface
      */
     private $rubriques;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default:false"})
+     */
+    private $newsletter;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Abonnement::class, inversedBy="utilisateurs")
+     */
+    private $abonnement;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -222,6 +232,30 @@ class Utilisateur implements UserInterface
                 $rubrique->setRedacteur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNewsletter(): ?bool
+    {
+        return $this->newsletter;
+    }
+
+    public function setNewsletter(bool $newsletter): self
+    {
+        $this->newsletter = $newsletter;
+
+        return $this;
+    }
+
+    public function getAbonnement(): ?Abonnement
+    {
+        return $this->abonnement;
+    }
+
+    public function setAbonnement(?Abonnement $abonnement): self
+    {
+        $this->abonnement = $abonnement;
 
         return $this;
     }
