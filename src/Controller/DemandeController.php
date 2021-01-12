@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Demande;
 use App\Form\DemandeType;
 use App\Repository\DemandeRepository;
+use Swift_Mailer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +21,7 @@ class DemandeController extends AbstractController
     /**
      * @Route("/demande", name="demande", methods={"GET","POST"})
      */
-    public function show(Request $request): Response
+    public function show(Request $request, Swift_Mailer $mailer): Response
     {
         $demande = new Demande();
         $form = $this->createForm(DemandeType::class, $demande);
@@ -32,17 +33,41 @@ class DemandeController extends AbstractController
             $entityManager->flush();
 
 
-            return $this->redirectToRoute('send_mail',array(
-                'de' => self::NE_PAS_REPONDRE,
-                'a' => 'estebangagneur03@gmail.com',
-                'objet' => $demande->getObjet(),
-                'texte' => 'Vous avez envoyé ce mail '.$demande->getTexte()
-            ));
+            $message = (new \Swift_Message('Hello Email'))
+                ->setFrom(self::NE_PAS_REPONDRE)
+                ->setTo($demande->getMail())
+                ->setBody(
+                    $this->renderView('mail/demande.html.twig', [
+                            'demande' => $demande
+                        ]
+                    ),
+                    'text/html'
+                )
+
+                /* you can remove the following code if you don't define a text version for your emails
+                ->addPart(
+                    $this->renderView(
+                    // templates/emails/registration.txt.twig
+                        'emails/demande.txt.twig',
+                        ['demande' => $demande]
+                    ),
+                    'text/plain'
+                )*/
+            ;
+
+            $mailer->send($message);
+            $this->addFlash(
+                'info',
+                'Le mail a bien été envoyé'
+            );
+            return $this->redirectToRoute('app_accueil');
         }
 
-        return $this->render('demande/Front/demande.html.twig', [
-            'demande' => $demande,
-            'form' => $form->createView(),
+
+
+        return $this->render('demande/Front/demande.html.twig',[
+            'demandes' => $demande,
+            'form' => $form->createView()
         ]);
     }
 

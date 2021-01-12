@@ -27,6 +27,11 @@ class Demande
      */
     private $texte;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $mail;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Demande
     public function setTexte(string $texte): self
     {
         $this->texte = $texte;
+
+        return $this;
+    }
+
+    public function getMail(): ?string
+    {
+        return $this->mail;
+    }
+
+    public function setMail(string $mail): self
+    {
+        $this->mail = $mail;
 
         return $this;
     }
