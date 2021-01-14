@@ -4,14 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Demande;
 use App\Form\DemandeType;
+use App\Form\RepondreDemandeType;
 use App\Repository\DemandeRepository;
 use Swift_Mailer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
 
 class DemandeController extends AbstractController
 {
@@ -42,19 +41,7 @@ class DemandeController extends AbstractController
                         ]
                     ),
                     'text/html'
-                )
-
-                /* you can remove the following code if you don't define a text version for your emails
-                ->addPart(
-                    $this->renderView(
-                    // templates/emails/registration.txt.twig
-                        'emails/demande.txt.twig',
-                        ['demande' => $demande]
-                    ),
-                    'text/plain'
-                )*/
-            ;
-
+                );
             $mailer->send($message);
             $this->addFlash(
                 'info',
@@ -78,6 +65,43 @@ class DemandeController extends AbstractController
     {
         return $this->render('demande/index.html.twig', [
             'demandes' => $demandeRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/demande/repondre/{id}", name="demande_repondre", methods={"GET","POST"})
+     */
+    public function repondre(Request $request, Swift_Mailer $mailer, $id, DemandeRepository $repo): Response
+    {
+        $demande = $repo->findOneBy(["id" => $id]);
+        $form = $this->createForm(RepondreDemandeType::class, $demande);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($demande);
+            $entityManager->flush();
+
+            $message = (new \Swift_Message('Hello Email'))
+                ->setFrom(self::NE_PAS_REPONDRE)
+                ->setTo($demande->getMail())
+                ->setBody(
+                    $this->renderView('mail/demande.html.twig', [
+                            'demande' => $demande
+                        ]
+                    ),
+                    'text/html'
+                );
+            $mailer->send($message);
+            $this->addFlash(
+                'info',
+                'Le mail a bien été envoyé'
+            );
+            return $this->redirectToRoute('app_accueil');
+        }
+        return $this->render('demande/repondre.html.twig',[
+            'demandes' => $demande,
+            'form' => $form->createView()
         ]);
     }
 

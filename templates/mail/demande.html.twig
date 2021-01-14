@@ -1,10 +1,10 @@
 <h3>Notification de demande</h3>
 
-Bonjour Voici la notification de votre demande #{{ demande.id }}
+Bonjour, voici la notification de votre demande #{{ demande.id }}<br><br>
 
-{{ demande.texte }}
+{{ demande.texte }}<br><br>
 
 
-Se connecter: <a href="{{ url('app_login') }}">...</a>.
+<a href="{{ url('app_login') }}">Se connecter</a>.<br><br>
 
 Merci!

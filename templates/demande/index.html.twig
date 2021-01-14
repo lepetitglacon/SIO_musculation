@@ -24,6 +24,7 @@
                     <td scope="row">{{ demande.texte }}</td>
                     <td scope="row">
                         <a href="{{ path('demande_show', {'id': demande.id}) }}" class="btn btn-primary">Afficher</a>
+                        <a href="{{ path('demande_repondre', {'id': demande.id}) }}" class="btn btn-secondary">Répondre</a>
                     </td>
                 </tr>
             {% else %}

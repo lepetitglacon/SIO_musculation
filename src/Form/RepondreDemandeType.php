@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DemandeType extends AbstractType
+class RepondreDemandeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -18,9 +18,6 @@ class DemandeType extends AbstractType
                 "required" => true
             ])
             ->add('texte',TextType::class,[
-                "required" => true
-            ])
-            ->add('mail',EmailType::class,[
                 "required" => true
             ])
         ;
