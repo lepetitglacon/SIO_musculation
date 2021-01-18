@@ -21,7 +21,7 @@
                 <tr>
                     <th scope="row">{{ demande.id }}</th>
                     <td scope="row">{{ demande.objet }}</td>
-                    <td scope="row">{{ demande.texte }}</td>
+                    <td scope="row"><textarea readonly style="width: 100%">{{ demande.texte }}</textarea></td>
                     <td scope="row">
                         <a href="{{ path('demande_show', {'id': demande.id}) }}" class="btn btn-primary">Afficher</a>
                         <a href="{{ path('demande_repondre', {'id': demande.id}) }}" class="btn btn-secondary">Répondre</a>

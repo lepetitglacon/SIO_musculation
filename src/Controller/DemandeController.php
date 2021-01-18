@@ -100,7 +100,7 @@ class DemandeController extends AbstractController
             return $this->redirectToRoute('app_accueil');
         }
         return $this->render('demande/repondre.html.twig',[
-            'demandes' => $demande,
+            'demande' => $demande,
             'form' => $form->createView()
         ]);
     }

@@ -4,9 +4,17 @@
 
 {% block body %}
     <div class="container">
-        <h1>Répondre à la demande</h1>
+        <h1>Répondre à la demande #{{ demande.id }}</h1>
+        <div class="d-flex flex-column">
+            <label>
+    <textarea type="text" placeholder="{{ demande.objet }}"></textarea>
+    <textarea type="text" placeholder="{{ demande.texte }}"></textarea>
+            </label></div>
+        <hr>
+        <div>
+            {{ include('demande/_form.html.twig') }}
+        </div>
 
-        {{ include('demande/_form.html.twig') }}
     </div>
 
 {% endblock %}
